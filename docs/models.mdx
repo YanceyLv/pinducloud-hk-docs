@@ -28,37 +28,49 @@ curl https://pinducloud.cc/v1/models \
   "object": "list",
   "data": [
     {
-      "id": "glm-5.1",
+      "id": "gpt-5.4",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
     },
     {
-      "id": "minimax-m2.7",
+      "id": "gpt-5.5",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
     },
     {
-      "id": "kimi-k2.5",
+      "id": "gpt-image-2",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
     },
     {
-      "id": "kimi-k2.6",
+      "id": "claude-opus-4-6",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
     },
     {
-      "id": "deepseek-v4-pro",
+      "id": "claude-opus-4-7",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
     },
     {
-      "id": "deepseek-v4-flash",
+      "id": "claude-opus-4-8",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "claude-haiku-4-5-20251001",
       "object": "model",
       "created": 1710000000,
       "owned_by": "pinducloud"
@@ -71,15 +83,19 @@ curl https://pinducloud.cc/v1/models \
 
 | 模型 | 推荐用途 |
 | --- | --- |
-| `glm-5.1` | 通用对话、推理、内容生成 |
-| `minimax-m2.7` | 通用对话和长文本任务 |
-| `kimi-k2.5` | 文本理解和知识问答 |
-| `kimi-k2.6` | 文本理解和升级版 Kimi 场景 |
-| `deepseek-v4-pro` | 高质量生产回答 |
-| `deepseek-v4-flash` | 低延迟默认请求 |
+| `gpt-5.4` | 通用对话、复杂推理、内容生成 |
+| `gpt-5.5` | 高质量文本生成、生产默认模型 |
+| `gpt-image-2` | 图像生成请求 |
+| `claude-opus-4-6` | 高质量写作、复杂分析、长任务处理 |
+| `claude-opus-4-7` | 高质量推理、复杂业务场景 |
+| `claude-opus-4-8` | 高质量生产回答、复杂多步骤任务 |
+| `claude-sonnet-4-6` | 平衡质量、速度和成本的通用场景 |
+| `claude-haiku-4-5-20251001` | 低延迟、轻量任务和高并发场景 |
 
 ## 接入建议
 
 - 将模型 ID 写入业务配置，避免分散硬编码。
+- 文本默认场景可优先评估 `gpt-5.5` 或 `claude-sonnet-4-6`。
+- 图像生成场景使用 `gpt-image-2`。
 - 关键生产流程应配置可用的降级模型。
 - 上线前确认模型价格、上下文长度和可用性。

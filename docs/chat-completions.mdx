@@ -5,7 +5,7 @@ title: Chat Completions
 
 # Chat Completions
 
-用于多轮对话、文本生成、摘要、信息抽取和结构化助手场景。
+用于多轮回话、文本生成、摘要、信息抽取和结构化助手场景。
 
 ## Endpoint
 
@@ -20,7 +20,7 @@ curl https://pinducloud.cc/v1/chat/completions \
   -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "deepseek-v4-flash",
+    "model": "gpt-5.5",
     "messages": [
       {
         "role": "system",
@@ -43,7 +43,7 @@ curl https://pinducloud.cc/v1/chat/completions \
   "id": "chatcmpl_abc123",
   "object": "chat.completion",
   "created": 1710000000,
-  "model": "deepseek-v4-flash",
+  "model": "gpt-5.5",
   "choices": [
     {
       "index": 0,
@@ -69,7 +69,7 @@ curl https://pinducloud.cc/v1/chat/completions \
   -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "deepseek-v4-flash",
+    "model": "gpt-5.5",
     "messages": [
       {
         "role": "user",
@@ -84,14 +84,14 @@ curl https://pinducloud.cc/v1/chat/completions \
 
 | 参数 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| `model` | string | 是 | 模型 ID，例如 `deepseek-v4-flash` |
-| `messages` | array | 是 | OpenAI 格式的对话消息 |
+| `model` | string | 是 | 模型 ID，例如 `gpt-5.5` |
+| `messages` | array | 是 | OpenAI 格式的回话消息 |
 | `temperature` | number | 否 | 采样温度 |
 | `max_tokens` | number | 否 | 最大输出 token 数 |
 | `stream` | boolean | 否 | 是否返回流式响应 |
 
 ## 接入建议
 
-- 默认低延迟场景可使用 `deepseek-v4-flash`。
-- 对回答质量要求更高的场景可评估 `deepseek-v4-pro`。
+- 默认低延迟场景可使用 `gpt-5.5`。
+- 对回答质量要求更高的场景可评估 `claude-opus-4-8`。
 - 服务端应设置请求超时和最大重试次数。

@@ -9,7 +9,7 @@ title: 图像生成
 
 ## 可用性
 
-当前公开模型列表以对话和文本模型为主。如果你的账号已开通图像模型，请在请求中使用对应模型 ID。
+前前公开模型列表以对话和文本模型为主。如果你的账号已开通图像模型，请在请求中使用对应模型 ID。
 
 ## Endpoint
 
@@ -24,7 +24,7 @@ curl https://pinducloud.cc/v1/images/generations \
   -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "<image_model>",
+    "model": "gpt-image-2",
     "prompt": "A clean product dashboard for an API platform, professional UI, light theme",
     "size": "1024x1024",
     "n": 1

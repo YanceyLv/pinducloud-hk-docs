@@ -30,7 +30,7 @@ export default function Home() {
               <code>{`curl https://pinducloud.cc/v1/chat/completions \\
   -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"model":"deepseek-v4-flash","messages":[{"role":"user","content":"Hello"}]}'`}</code>
+  -d '{"model":"gpt-5.5","messages":[{"role":"user","content":"Hello"}]}'`}</code>
             </pre>
           </div>
         </section>
