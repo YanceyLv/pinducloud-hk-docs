@@ -85,4 +85,4 @@
 - 分支：`main`
 - 提交前验证：`npm.cmd run build` 通过。
 - 提交范围：源码、文档、配置和静态资源；`node_modules`、`build`、`.docusaurus` 已由 `.gitignore` 排除。
-- 待验证：推送后检查 `main` 是否跟踪 `origin/main`。
+- 推送结果：`main` 已成功推送并跟踪 `origin/main`。
