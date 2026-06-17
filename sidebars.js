@@ -13,7 +13,7 @@ const sidebars = {
       type: 'category',
       label: 'AI 接口',
       collapsed: false,
-      items: ['chat-completions', 'images', 'models'],
+      items: ['chat-completions', 'claude-messages', 'images', 'models'],
     },
     {
       type: 'category',

@@ -1,0 +1,77 @@
+---
+sidebar_position: 5
+title: Claude Messages
+---
+
+# Claude Messages
+
+Claude 系列模型使用 Anthropic Messages 风格接口，不使用 OpenAI `/v1/chat/completions` 路径。
+
+## Endpoint
+
+```http
+POST https://pinducloud.cc/v1/messages
+```
+
+## 适用模型
+
+- `claude-opus-4-6`
+- `claude-opus-4-7`
+- `claude-opus-4-8`
+- `claude-sonnet-4-6`
+- `claude-haiku-4-5-20251001`
+
+## 请求示例
+
+```bash
+curl https://pinducloud.cc/v1/messages \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-6",
+    "max_tokens": 500,
+    "messages": [
+      {
+        "role": "user",
+        "content": "请用三点说明生产环境 API 接入的注意事项。"
+      }
+    ]
+  }'
+```
+
+## 响应示例
+
+```json
+{
+  "id": "msg_abc123",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-sonnet-4-6",
+  "content": [
+    {
+      "type": "text",
+      "text": "1. API Key 只保存在服务端。\n2. 设置请求超时、限流和重试上限。\n3. 记录错误码、耗时和模型名称，便于排障。"
+    }
+  ],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 32,
+    "output_tokens": 48
+  }
+}
+```
+
+## 参数
+
+| 参数 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| `model` | string | 是 | Claude 模型 ID，例如 `claude-sonnet-4-6` |
+| `messages` | array | 是 | Anthropic Messages 格式的消息列表 |
+| `max_tokens` | number | 是 | 最大输出 token 数 |
+| `temperature` | number | 否 | 采样温度 |
+
+## 接入建议
+
+- GPT 系列文本模型使用 `/v1/chat/completions`。
+- Claude 系列模型使用 `/v1/messages`。
+- 不要将 Claude 模型直接放入 Chat Completions 示例中调用。

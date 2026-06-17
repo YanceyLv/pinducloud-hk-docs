@@ -1,11 +1,11 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 title: 模型列表
 ---
 
 # 模型列表
 
-查询当前 API Key 可访问的模型列表。
+查询当前 API Key 可访问的模型列表，并确认每类模型应使用的接口路径。
 
 ## Endpoint
 
@@ -81,21 +81,21 @@ curl https://pinducloud.cc/v1/models \
 
 ## 当前支持模型
 
-| 模型 | 推荐用途 |
-| --- | --- |
-| `gpt-5.4` | 通用对话、复杂推理、内容生成 |
-| `gpt-5.5` | 高质量文本生成、生产默认模型 |
-| `gpt-image-2` | 图像生成请求 |
-| `claude-opus-4-6` | 高质量写作、复杂分析、长任务处理 |
-| `claude-opus-4-7` | 高质量推理、复杂业务场景 |
-| `claude-opus-4-8` | 高质量生产回答、复杂多步骤任务 |
-| `claude-sonnet-4-6` | 平衡质量、速度和成本的通用场景 |
-| `claude-haiku-4-5-20251001` | 低延迟、轻量任务和高并发场景 |
+| 模型 | 接口路径 | 推荐用途 |
+| --- | --- | --- |
+| `gpt-5.4` | `/v1/chat/completions` | 通用对话、复杂推理、内容生成 |
+| `gpt-5.5` | `/v1/chat/completions` | 高质量文本生成、生产默认模型 |
+| `gpt-image-2` | `/v1/images/generations` | 图像生成请求 |
+| `claude-opus-4-6` | `/v1/messages` | 高质量写作、复杂分析、长任务处理 |
+| `claude-opus-4-7` | `/v1/messages` | 高质量推理、复杂业务场景 |
+| `claude-opus-4-8` | `/v1/messages` | 高质量生产回答、复杂多步骤任务 |
+| `claude-sonnet-4-6` | `/v1/messages` | 平衡质量、速度和成本的通用场景 |
+| `claude-haiku-4-5-20251001` | `/v1/messages` | 低延迟、轻量任务和高并发场景 |
 
 ## 接入建议
 
+- GPT 文本模型使用 [Chat Completions](./chat-completions)：`/v1/chat/completions`。
+- Claude 模型使用 [Claude Messages](./claude-messages)：`/v1/messages`。
+- 图像模型使用 [图像生成](./images)：`/v1/images/generations`。
 - 将模型 ID 写入业务配置，避免分散硬编码。
-- 文本默认场景可优先评估 `gpt-5.5` 或 `claude-sonnet-4-6`。
-- 图像生成场景使用 `gpt-image-2`。
 - 关键生产流程应配置可用的降级模型。
-- 上线前确认模型价格、上下文长度和可用性。

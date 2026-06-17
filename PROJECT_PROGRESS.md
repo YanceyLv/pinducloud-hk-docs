@@ -93,3 +93,11 @@
 - 默认 Chat 示例模型：`gpt-5.5`。
 - 图像生成示例模型：`gpt-image-2`。
 - 验证结果：`npm.cmd run build` 通过；旧模型名残留扫描无匹配结果。
+## Claude 接口路径修正
+
+- 日期：2026-06-18
+- GPT 文本模型使用 `/v1/chat/completions`。
+- Claude 模型使用 `/v1/messages`。
+- 图像模型使用 `/v1/images/generations`。
+- 新增 `docs/claude-messages.mdx`，并在侧边栏 AI 接口分组中加入 Claude Messages。
+- 验证结果：`npm.cmd run build` 通过；Claude 模型已明确使用 `/v1/messages`。

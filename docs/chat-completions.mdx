@@ -93,5 +93,5 @@ curl https://pinducloud.cc/v1/chat/completions \
 ## 接入建议
 
 - 默认低延迟场景可使用 `gpt-5.5`。
-- 对回答质量要求更高的场景可评估 `claude-opus-4-8`。
+- Claude 系列模型请改用 `/v1/messages`，不要通过本接口调用。
 - 服务端应设置请求超时和最大重试次数。

@@ -37,7 +37,8 @@ https://pinducloud.cc
 - `docs/intro.mdx`：API 平台首页
 - `docs/quickstart.mdx`：快速接入
 - `docs/auth.mdx`：API 鉴权
-- `docs/chat-completions.mdx`：Chat Completions API
+- `docs/chat-completions.mdx`：GPT 文本模型接口
+- `docs/claude-messages.mdx`：Claude Messages 接口
 - `docs/images.mdx`：图像生成 API
 - `docs/models.mdx`：模型列表
 - `docs/errors.mdx`：错误处理
