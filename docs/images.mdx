@@ -1,0 +1,60 @@
+---
+sidebar_position: 5
+title: 图像生成
+---
+
+# 图像生成
+
+使用 OpenAI 兼容的图像生成请求，根据文本提示词生成图片。
+
+## 可用性
+
+当前公开模型列表以对话和文本模型为主。如果你的账号已开通图像模型，请在请求中使用对应模型 ID。
+
+## Endpoint
+
+```http
+POST https://pinducloud.cc/v1/images/generations
+```
+
+## 请求示例
+
+```bash
+curl https://pinducloud.cc/v1/images/generations \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "<image_model>",
+    "prompt": "A clean product dashboard for an API platform, professional UI, light theme",
+    "size": "1024x1024",
+    "n": 1
+  }'
+```
+
+## 响应示例
+
+```json
+{
+  "created": 1710000000,
+  "data": [
+    {
+      "url": "https://cdn.example.com/generated-image.png"
+    }
+  ]
+}
+```
+
+## 参数
+
+| 参数 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| `model` | string | 是 | 已开通的图像模型 ID |
+| `prompt` | string | 是 | 图像描述 |
+| `size` | string | 否 | 输出尺寸，例如 `1024x1024` |
+| `n` | number | 否 | 生成图片数量 |
+
+## 接入建议
+
+- 将用户输入的提示词转发给图像模型前，应先做安全校验。
+- 如果需要长期访问生成图片，应将图片保存到自有对象存储。
+- 面向终端用户开放图像生成前，应配置成本告警和请求限制。

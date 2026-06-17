@@ -1,0 +1,54 @@
+---
+sidebar_position: 8
+title: 价格说明
+---
+
+# 价格说明
+
+价格取决于模型、请求量和已开通的产品能力。本页用于说明生产接入时需要关注的计费概念。
+
+## 计费概念
+
+| 概念 | 说明 |
+| --- | --- |
+| 模型 | 不同模型可能具有不同价格和能力 |
+| 输入 tokens | 请求中的提示词、系统消息和历史上下文 |
+| 输出 tokens | 模型生成的内容 |
+| 图像请求 | 开通图像能力后，图像生成可能独立计费 |
+
+## 请求示例
+
+在选择模型和计费策略前，可先通过模型列表接口查询当前可用模型。
+
+```bash
+curl https://pinducloud.cc/v1/models \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+## 响应示例
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "deepseek-v4-flash",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    }
+  ]
+}
+```
+
+## 成本控制
+
+- 高并发默认流量可优先选择低延迟模型。
+- 设置 `max_tokens`，避免输出长度失控。
+- 为用户、租户或业务线设置额度和每日成本告警。
+- 记录模型 ID、token 用量和请求状态，方便账单核对。
+
+## 说明
+
+最新商业价格、账户额度和结算规则请以 PinduCloud 实际开通信息为准。

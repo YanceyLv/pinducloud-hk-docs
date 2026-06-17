@@ -1,0 +1,85 @@
+---
+sidebar_position: 6
+title: 模型列表
+---
+
+# 模型列表
+
+查询当前 API Key 可访问的模型列表。
+
+## Endpoint
+
+```http
+GET https://pinducloud.cc/v1/models
+```
+
+## 请求示例
+
+```bash
+curl https://pinducloud.cc/v1/models \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+## 响应示例
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "glm-5.1",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "minimax-m2.7",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "kimi-k2.5",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "kimi-k2.6",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    }
+  ]
+}
+```
+
+## 当前支持模型
+
+| 模型 | 推荐用途 |
+| --- | --- |
+| `glm-5.1` | 通用对话、推理、内容生成 |
+| `minimax-m2.7` | 通用对话和长文本任务 |
+| `kimi-k2.5` | 文本理解和知识问答 |
+| `kimi-k2.6` | 文本理解和升级版 Kimi 场景 |
+| `deepseek-v4-pro` | 高质量生产回答 |
+| `deepseek-v4-flash` | 低延迟默认请求 |
+
+## 接入建议
+
+- 将模型 ID 写入业务配置，避免分散硬编码。
+- 关键生产流程应配置可用的降级模型。
+- 上线前确认模型价格、上下文长度和可用性。

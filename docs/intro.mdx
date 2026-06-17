@@ -1,0 +1,61 @@
+---
+sidebar_position: 1
+slug: /intro
+title: PinduCloud API Platform
+---
+
+# PinduCloud API Platform
+
+OpenAI 兼容 API 网关
+
+PinduCloud 提供兼容 OpenAI 请求格式的 API 平台。开发者可以使用 OpenAI 风格的接口、请求体和响应结构，快速接入多模型 AI 能力。
+
+## Base URL
+
+```text
+https://pinducloud.cc
+```
+
+所有 API 示例均使用该 Base URL。生产环境请在服务端保存 API Key，不要将密钥暴露在浏览器、移动端或公开仓库中。
+
+## 核心能力
+
+| 能力 | 说明 |
+| --- | --- |
+| OpenAI 兼容 | 使用 `/v1/chat/completions`、`/v1/models` 等 OpenAI 风格接口 |
+| 多模型接入 | 统一接入 `glm`、`kimi`、`deepseek`、`minimax` 等模型 |
+| 生产可用 | 面向服务端集成，支持鉴权、错误处理、限流和成本治理 |
+| 迁移简单 | 现有 OpenAI SDK 或兼容客户端可通过替换 Base URL 迁移 |
+
+## 第一次请求
+
+```bash
+curl https://pinducloud.cc/v1/chat/completions \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Say hello from PinduCloud."
+      }
+    ]
+  }'
+```
+
+## API 能力
+
+- 对话补全：文本生成与多轮对话
+- 图像生成：已开通图像模型时可用于图像生成
+- 模型列表：查询当前可用模型
+- 错误处理：标准错误对象与排障建议
+- 限流策略：请求限流与重试策略
+- 价格说明：计费概念与成本控制建议
+
+## 生产接入清单
+
+- 将 API Key 保存在服务端环境变量或密钥管理系统中。
+- 上线前配置请求超时、重试上限和日志观测。
+- 记录请求 ID、状态码、模型名称、耗时和错误码。
+- 除非业务策略允许，不要发送敏感用户数据。

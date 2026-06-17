@@ -1,0 +1,59 @@
+---
+sidebar_position: 3
+title: API 鉴权
+---
+
+# API 鉴权
+
+PinduCloud 使用 Bearer Token 鉴权。每个请求都需要在 `Authorization` 请求头中携带 API Key。
+
+## 请求头
+
+```http
+Authorization: Bearer <PINDUCLOUD_API_KEY>
+Content-Type: application/json
+```
+
+## 请求示例
+
+```bash
+curl https://pinducloud.cc/v1/models \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+## 响应示例
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "deepseek-v4-flash",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "pinducloud"
+    }
+  ]
+}
+```
+
+## 鉴权错误
+
+```json
+{
+  "error": {
+    "message": "Invalid authentication credentials.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "invalid_api_key"
+  }
+}
+```
+
+## 安全建议
+
+- API Key 只应保存在可信服务端。
+- 不要将 API Key 写入 Git、Markdown、前端代码或移动端代码。
+- 如果密钥出现在日志、截图、聊天记录或公开仓库中，应立即轮换。
+- 开发、测试、生产环境建议使用不同 API Key。

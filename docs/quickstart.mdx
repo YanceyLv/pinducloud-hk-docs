@@ -1,0 +1,80 @@
+---
+sidebar_position: 2
+title: 快速接入
+---
+
+# 快速接入
+
+使用 PinduCloud 发起第一个 OpenAI 兼容请求。
+
+## Base URL
+
+```text
+https://pinducloud.cc
+```
+
+## 1. 设置 API Key
+
+```bash
+export PINDUCLOUD_API_KEY="your_api_key"
+```
+
+PowerShell：
+
+```powershell
+$env:PINDUCLOUD_API_KEY="your_api_key"
+```
+
+## 2. 发送 Chat 请求
+
+```bash
+curl https://pinducloud.cc/v1/chat/completions \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a concise API assistant."
+      },
+      {
+        "role": "user",
+        "content": "Write a one sentence product summary."
+      }
+    ],
+    "temperature": 0.7
+  }'
+```
+
+## 响应示例
+
+```json
+{
+  "id": "chatcmpl_abc123",
+  "object": "chat.completion",
+  "created": 1710000000,
+  "model": "deepseek-v4-flash",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "PinduCloud provides an OpenAI Compatible API gateway for production AI applications."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 28,
+    "completion_tokens": 18,
+    "total_tokens": 46
+  }
+}
+```
+
+## 下一步
+
+- 部署前阅读 [API 鉴权](./auth)。
+- 通过 [模型列表](./models) 选择可用模型。
+- 阅读 [限流策略](./rate-limits) 和 [错误处理](./errors)，完善生产环境处理逻辑。

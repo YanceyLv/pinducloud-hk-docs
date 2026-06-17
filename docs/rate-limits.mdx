@@ -1,0 +1,61 @@
+---
+sidebar_position: 9
+title: 限流策略
+---
+
+# 限流策略
+
+限流用于保护平台稳定性并控制成本。具体限制可能因账号、模型、接口和商业计划不同而变化。
+
+## 限流维度
+
+| 维度 | 说明 |
+| --- | --- |
+| 每分钟请求数 | 滚动时间窗口内允许的最大请求次数 |
+| 每分钟 tokens | 输入和输出 token 的吞吐限制 |
+| 并发请求数 | 同一时间允许的最大进行中请求数量 |
+| 每日额度 | 账期或自然日内允许的最大用量 |
+
+## 请求示例
+
+```bash
+curl https://pinducloud.cc/v1/chat/completions \
+  -H "Authorization: Bearer $PINDUCLOUD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Return a short status update."
+      }
+    ],
+    "max_tokens": 120
+  }'
+```
+
+## 限流响应
+
+```json
+{
+  "error": {
+    "message": "Rate limit exceeded. Please retry later.",
+    "type": "rate_limit_error",
+    "param": null,
+    "code": "rate_limit_exceeded"
+  }
+}
+```
+
+## 重试策略
+
+- 对 `429` 响应使用指数退避重试。
+- 增加随机抖动，避免请求集中重试。
+- 设置最大重试次数，并向用户返回清晰错误。
+- 非紧急任务建议进入队列，而不是立即重试。
+
+## 生产建议
+
+- 在调用 API 前先做业务侧用户级限流。
+- 监控请求量、token 量、延迟和失败率。
+- 建议按环境或业务线拆分 API Key，便于隔离和审计。
